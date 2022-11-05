@@ -1,41 +1,39 @@
 import React from 'react'
-import {Button} from '../Button';
-import logo from '../../assets/logo-dio.png'
+import logo from '../../assets/logo-dio.png';
 
-import {
-    BuscarInputContainer,
-    Column,
-    Container,
-    Input,
-    Menu,
-    MenuRight,
-    Row,
-    UserPicture,
-    Wrapper
-} from './styles'
+import { Button } from '../Button';
 
+import { Container, Wrapper, BuscarInputContainer, Input, Row, Menu, MenuRight, UserPicture} from './styles';
 
-
-const Header = () => {
+const Header = ({autenticado}) => {
   return (
     <Wrapper>
-        <Container>
-            <Row>
-                <img src={logo} alt="Logo da dio"/>
-                <BuscarInputContainer>
-                    <Input placeholder='Buscar...'/>
-                </BuscarInputContainer>
+      <Container>
+          <Row>
+            <img src={logo} alt="Logo da dio"/>
+            {autenticado ? (
+              <>
+               <BuscarInputContainer>
+                <Input placeholder='Buscar...'/>
+               </BuscarInputContainer>
                 <Menu>Live Code</Menu>
                 <Menu>Global</Menu>
-            </Row>
-            <Row>
-                <MenuRight href="#">Home</MenuRight>
+              </>
+            ) : null}
+          </Row>
+          <Row>
+              {autenticado ? (
+                <UserPicture src="https://avatars.githubusercontent.com/lukax34"/>
+              ) : (
+              <>
+                <MenuRight href="/">Home</MenuRight>
                 <Button title="Entrar" />
                 <Button title="Cadastrar" />
-            </Row>
-        </Container>
+              </>)}
+          </Row>
+      </Container>
     </Wrapper>
   )
 }
 
-export {Header}
+export { Header }
